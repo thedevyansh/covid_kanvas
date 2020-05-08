@@ -25,7 +25,6 @@ class Homepage extends React.Component {
 
 
   handleSearchGraph(term) {
-    // alert("Bro i guess its working");
     this.setState({searchTerm: term});
   }
 

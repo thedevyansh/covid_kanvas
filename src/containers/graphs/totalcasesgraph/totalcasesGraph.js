@@ -38,7 +38,7 @@ class RecoveredCasesGraph extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-      if (this.props.searchTerm !== prevProps.searchTerm) {
+      if (this.props.searchTerm !== prevProps.searchTerm || this.props.graphType !== prevProps.graphType) {
         if(this.props.searchTerm !== '') {
           axios.get("https://api.covid19india.org/states_daily.json").then((res) => {
             let stateCodes = {
@@ -81,12 +81,21 @@ class RecoveredCasesGraph extends React.Component {
             }
             let date = [];
             let confirmedcases = [];
-            console.log(this.props.searchTerm);
             let stateCode = stateCodes[this.props.searchTerm];
             stateCode = stateCode.toLowerCase();
-            for(let i = 0; i < res.data.states_daily.length; i+=3) {
-              date.push(res.data.states_daily[i].date);
-              confirmedcases.push(res.data.states_daily[i][stateCode]);
+            if(this.props.graphType === "daily") {
+              for(let i = 0; i < res.data.states_daily.length; i+=3) {
+                  confirmedcases.push(res.data.states_daily[i][stateCode]);
+                  date.push(res.data.states_daily[i].date);
+              }
+            }
+            else {
+              let caseSum = 0;
+              for(let i = 0; i < res.data.states_daily.length; i+=3) {
+                caseSum += +res.data.states_daily[i][stateCode];
+                confirmedcases.push(caseSum);
+                date.push(res.data.states_daily[i].date);
+              }
             }
             this.setState({
               Data: {

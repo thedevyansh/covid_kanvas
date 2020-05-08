@@ -26,6 +26,7 @@ class SearchBar extends React.Component {
   ifSearchedHandler = (searchTerm) => {
     this.setState({ifSearched: true});
     this.props.handleSearchGraph(searchTerm);
+    document.getElementById("graphType").style.display = "";
   }
 
   render() {

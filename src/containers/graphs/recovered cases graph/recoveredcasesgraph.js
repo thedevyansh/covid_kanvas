@@ -10,17 +10,17 @@ class RecoveredCasesGraph extends React.Component {
   componentDidMount() {
     axios.get("https://api.covid19india.org/data.json").then((res) => {
       let date = [];
-      let confirmedcases = [];
+      let recoveredcases = [];
       res.data.cases_time_series.forEach((element) => {
         date.push(element.date);
-        confirmedcases.push(element.totalrecovered);
+        recoveredcases.push(element.totalrecovered);
       });
       this.setState({
         Data: {
           labels: date,
           datasets: [
             {
-              data: confirmedcases,
+              data: recoveredcases,
               fill: true,
               lineTension: 0.5,
               backgroundColor: "rgba(0, 230, 77,0.6)",
@@ -34,7 +34,7 @@ class RecoveredCasesGraph extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.searchTerm !== prevProps.searchTerm) {
+    if (this.props.searchTerm !== prevProps.searchTerm || this.props.graphType !== prevProps.graphType) {
       if(this.props.searchTerm !== '') {
         axios.get("https://api.covid19india.org/states_daily.json").then((res) => {
           let stateCodes = {
@@ -79,9 +79,19 @@ class RecoveredCasesGraph extends React.Component {
           let recoveredcases = [];
           let stateCode = stateCodes[this.props.searchTerm];
           stateCode = stateCode.toLowerCase();
-          for(let i = 1; i < res.data.states_daily.length; i+=3) {
-            date.push(res.data.states_daily[i].date);
-            recoveredcases.push(res.data.states_daily[i][stateCode]);
+          if(this.props.graphType === "daily") {
+            for(let i = 1; i < res.data.states_daily.length; i+=3) {
+                recoveredcases.push(res.data.states_daily[i][stateCode]);
+                date.push(res.data.states_daily[i].date);
+            }
+          }
+          else {
+            let caseSum = 0;
+            for(let i = 1; i < res.data.states_daily.length; i+=3) {
+              caseSum += +res.data.states_daily[i][stateCode];
+              recoveredcases.push(caseSum);
+              date.push(res.data.states_daily[i].date);
+            }
           }
           this.setState({
             Data: {
