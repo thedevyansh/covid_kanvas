@@ -37,9 +37,10 @@ class NavBar extends React.Component {
           <NavLink to="/suggestion/" exact className="suggestions">
             <i className="fa fa-lightbulb-o" aria-hidden="true"></i> Suggestions
           </NavLink>
-          <NavLink to="/about" className="about">
+          <NavLink to="/about" exact className="about">
             <i className="fas fa-virus"></i>About COVID-19
           </NavLink>
+          <a href="https://github.com/gawdsnitkkr/covid_kanvas">Contribute</a>
           <button
             className="icon"
             onClick={this.myFunction}
