@@ -8,7 +8,7 @@ const footer = (props) => {
       <a href="https://github.com/gawdsnitkkr">
         {" "}
         <i className="fa fa-github git icon" aria-hidden="true"></i>
-        <abbr className="username">github.com/gwadsnitkkr</abbr>
+        <abbr className="username">github.com/gawdsnitkkr</abbr>
       </a>
 
       <a href="https://www.instagram.com/_gawds/">
