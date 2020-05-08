@@ -14,19 +14,22 @@ body {
     box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.438), -9px -9px 16px    rgba(180, 170, 170, 0.5);
    
   }
-  .Faq{
-    margin-left: 30%;
+  .button{
+    margin-left: 3%;
     
   }
   .suggestions{
-      margin-left: 5%;
+      margin-left: 3%;
   }
   .about{
-    margin-left: 5%;
+    margin-left: 3%;
   }
-  .contribute{
-    margin-left: 5%
+  a{
+    margin-left: 3%;
   }
+ .fa{
+   margin-right: 15px;
+ }
   
   .topnav a {
     float: left;
