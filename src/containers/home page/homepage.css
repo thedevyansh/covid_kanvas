@@ -14,8 +14,8 @@ body{
   }
   .Content{
     display:flex;
-   
-  
+    flex-direction: row;
+    justify-content: space-between;
   }
   .Total{
     text-align: center;

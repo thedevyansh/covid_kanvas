@@ -2,12 +2,13 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 
-class RecoveredCasesGraph extends React.Component {
+class TotalCasesGraph extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       Data: {},
+      hideIt: false,
     };
   }
 
@@ -82,19 +83,25 @@ class RecoveredCasesGraph extends React.Component {
             let date = [];
             let confirmedcases = [];
             let stateCode = stateCodes[this.props.searchTerm];
-            stateCode = stateCode.toLowerCase();
-            if(this.props.graphType === "daily") {
-              for(let i = 0; i < res.data.states_daily.length; i+=3) {
-                  confirmedcases.push(res.data.states_daily[i][stateCode]);
-                  date.push(res.data.states_daily[i].date);
-              }
+            if(!stateCode) {
+              this.setState({hideIt: true});
             }
             else {
-              let caseSum = 0;
-              for(let i = 0; i < res.data.states_daily.length; i+=3) {
-                caseSum += +res.data.states_daily[i][stateCode];
-                confirmedcases.push(caseSum);
-                date.push(res.data.states_daily[i].date);
+              this.setState({hideIt: false});
+              stateCode = stateCode.toLowerCase();
+              if(this.props.graphType === "daily") {
+                for(let i = 0; i < res.data.states_daily.length; i+=3) {
+                    confirmedcases.push(res.data.states_daily[i][stateCode]);
+                    date.push(res.data.states_daily[i].date);
+                }
+              }
+              else {
+                let caseSum = 0;
+                for(let i = 0; i < res.data.states_daily.length; i+=3) {
+                  caseSum += +res.data.states_daily[i][stateCode];
+                  confirmedcases.push(caseSum);
+                  date.push(res.data.states_daily[i].date);
+                }
               }
             }
             this.setState({
@@ -118,6 +125,11 @@ class RecoveredCasesGraph extends React.Component {
     }
 
   render() {
+    if(this.state.hideIt === true) {
+      return (
+        <h3>No graphs to show.</h3>
+      );
+    }
     return (
       <div className="totalcasegraph">
         <Line
@@ -150,4 +162,4 @@ class RecoveredCasesGraph extends React.Component {
     );
   }
 }
-export default RecoveredCasesGraph;
+export default TotalCasesGraph;

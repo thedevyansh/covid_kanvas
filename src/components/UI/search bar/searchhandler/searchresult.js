@@ -8,19 +8,26 @@ class SearchData extends React.Component {
     state_data: [],
     district_data: [{ district_name: [] }, { district_cases: [] }],
   };
+
+
   capitalizeFirstLetter = (str) => {
     return str.toLowerCase()
             .split(' ')
             .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
             .join(' ');
   };
+
+
   searchDeleteHandler = () => {
     this.setState({
       district_data: [{ district_name: [] }, { district_cases: [] }],
       district: "",
     });
   };
+
+
   componentDidUpdate(prevProps) {
+
     if (prevProps.searched !== this.props.searched) {
       axios
         .get("https://api.covid19india.org/state_district_wise.json")
@@ -33,7 +40,6 @@ class SearchData extends React.Component {
             let tempKeys = this.capitalizeFirstLetter(keys);
             if (tempKeys === searchTerm) {
               for (let key in this.state.state_data[keys].districtData) {
-                // key = this.capitalizeFirstLetter(key);
                 names.push(key);
                 cases.push(
                   this.state.state_data[keys].districtData[key].confirmed

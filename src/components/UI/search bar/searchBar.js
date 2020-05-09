@@ -8,7 +8,6 @@ class SearchBar extends React.Component {
   state = {
     district: "",
     input: "Search For Your State",
-
     ifSearched: false,
   };
 
@@ -26,7 +25,12 @@ class SearchBar extends React.Component {
   ifSearchedHandler = (searchTerm) => {
     this.setState({ifSearched: true});
     this.props.handleSearchGraph(searchTerm);
-    document.getElementById("graphType").style.display = "";
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.tableSelectedTerm !== prevProps.tableSelectedTerm && this.props.tableSelectedTerm !== '') {
+      this.setState({district: this.props.tableSelectedTerm});
+    }
   }
 
   render() {

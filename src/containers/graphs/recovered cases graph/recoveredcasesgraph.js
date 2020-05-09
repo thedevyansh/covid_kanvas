@@ -6,6 +6,7 @@ import axios from "axios";
 class RecoveredCasesGraph extends React.Component {
   state = {
     Data: {},
+    hideIt: false,
   };
   componentDidMount() {
     axios.get("https://api.covid19india.org/data.json").then((res) => {
@@ -78,19 +79,25 @@ class RecoveredCasesGraph extends React.Component {
           let date = [];
           let recoveredcases = [];
           let stateCode = stateCodes[this.props.searchTerm];
-          stateCode = stateCode.toLowerCase();
-          if(this.props.graphType === "daily") {
-            for(let i = 1; i < res.data.states_daily.length; i+=3) {
-                recoveredcases.push(res.data.states_daily[i][stateCode]);
-                date.push(res.data.states_daily[i].date);
-            }
+          if(!stateCode) {
+            this.setState({hideIt: true});
           }
           else {
-            let caseSum = 0;
-            for(let i = 1; i < res.data.states_daily.length; i+=3) {
-              caseSum += +res.data.states_daily[i][stateCode];
-              recoveredcases.push(caseSum);
-              date.push(res.data.states_daily[i].date);
+            this.setState({hideIt: false});
+            stateCode = stateCode.toLowerCase();
+            if(this.props.graphType === "daily") {
+              for(let i = 1; i < res.data.states_daily.length; i+=3) {
+                  recoveredcases.push(res.data.states_daily[i][stateCode]);
+                  date.push(res.data.states_daily[i].date);
+              }
+            }
+            else {
+              let caseSum = 0;
+              for(let i = 1; i < res.data.states_daily.length; i+=3) {
+                caseSum += +res.data.states_daily[i][stateCode];
+                recoveredcases.push(caseSum);
+                date.push(res.data.states_daily[i].date);
+              }
             }
           }
           this.setState({
@@ -115,6 +122,9 @@ class RecoveredCasesGraph extends React.Component {
 
 
   render() {
+    if(this.state.hideIt === true) {
+      return null;
+    }
     return (
       <div className="recoveredcasegraph">
         <Line

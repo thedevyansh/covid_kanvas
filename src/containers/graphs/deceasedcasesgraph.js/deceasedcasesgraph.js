@@ -6,6 +6,7 @@ import axios from "axios";
 class DeceasedCasesGraph extends React.Component {
   state = {
     Data: {},
+    hideIt: false
   };
   componentDidMount() {
     axios.get("https://api.covid19india.org/data.json").then((res) => {
@@ -78,19 +79,25 @@ class DeceasedCasesGraph extends React.Component {
           let date = [];
           let deceasedcases = [];
           let stateCode = stateCodes[this.props.searchTerm];
-          stateCode = stateCode.toLowerCase();
-          if(this.props.graphType === "daily") {
-            for(let i = 2; i < res.data.states_daily.length; i+=3) {
-                deceasedcases.push(res.data.states_daily[i][stateCode]);
-                date.push(res.data.states_daily[i].date);
-            }
+          if(!stateCode) {
+            this.setState({hideIt: true});
           }
           else {
-            let caseSum = 0;
-            for(let i = 2; i < res.data.states_daily.length; i+=3) {
-              caseSum += +res.data.states_daily[i][stateCode];
-              deceasedcases.push(caseSum);
-              date.push(res.data.states_daily[i].date);
+            this.setState({hideIt: false});
+            stateCode = stateCode.toLowerCase();
+            if(this.props.graphType === "daily") {
+              for(let i = 2; i < res.data.states_daily.length; i+=3) {
+                  deceasedcases.push(res.data.states_daily[i][stateCode]);
+                  date.push(res.data.states_daily[i].date);
+              }
+            }
+            else {
+              let caseSum = 0;
+              for(let i = 2; i < res.data.states_daily.length; i+=3) {
+                caseSum += +res.data.states_daily[i][stateCode];
+                deceasedcases.push(caseSum);
+                date.push(res.data.states_daily[i].date);
+              }
             }
           }
           this.setState({
@@ -114,6 +121,11 @@ class DeceasedCasesGraph extends React.Component {
   }
 
   render() {
+    if(this.state.hideIt === true) {
+      return (
+        null
+      )
+    }
     return (
       <div className="deceasedcasegraph">
         <Line
