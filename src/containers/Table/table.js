@@ -8,6 +8,13 @@ class Table extends React.Component {
     total_data: [],
   };
 
+  capitalizeFirstLetter = (str) => {
+    return str.toLowerCase()
+            .split(' ')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ');
+  };
+
   componentDidMount() {
     axios.get("https://api.covid19india.org/data.json").then((response) => {
       this.setState({ state_data: response.data.statewise.slice(1, 38) });
@@ -18,7 +25,7 @@ class Table extends React.Component {
   render() {
     const row = this.state.state_data.map((post) => {
       return (
-        <tr key={post.statecode}>
+        <tr key={post.statecode} onClick = { () => {this.props.onClick(this.capitalizeFirstLetter(post.state))}}>
           <td className="States">{post.state}</td>
           <td className="Confirmed">{post.confirmed}</td>
           <td className="Active">{post.active}</td>

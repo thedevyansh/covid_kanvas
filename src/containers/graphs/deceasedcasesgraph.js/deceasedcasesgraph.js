@@ -6,21 +6,22 @@ import axios from "axios";
 class DeceasedCasesGraph extends React.Component {
   state = {
     Data: {},
+    hideIt: false
   };
   componentDidMount() {
     axios.get("https://api.covid19india.org/data.json").then((res) => {
       let date = [];
-      let confirmedcases = [];
+      let deceasedcases = [];
       res.data.cases_time_series.forEach((element) => {
         date.push(element.date);
-        confirmedcases.push(element.totaldeceased);
+        deceasedcases.push(element.totaldeceased);
       });
       this.setState({
         Data: {
           labels: date,
           datasets: [
             {
-              data: confirmedcases,
+              data: deceasedcases,
               fill: true,
               lineTension: 0.5,
               backgroundColor: "rgba(217, 217, 217,0.6)",
@@ -34,7 +35,7 @@ class DeceasedCasesGraph extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.searchTerm !== prevProps.searchTerm) {
+    if (this.props.searchTerm !== prevProps.searchTerm || this.props.graphType !== prevProps.graphType) {
       if(this.props.searchTerm !== '') {
         axios.get("https://api.covid19india.org/states_daily.json").then((res) => {
           let stateCodes = {
@@ -78,10 +79,26 @@ class DeceasedCasesGraph extends React.Component {
           let date = [];
           let deceasedcases = [];
           let stateCode = stateCodes[this.props.searchTerm];
-          stateCode = stateCode.toLowerCase();
-          for(let i = 2; i < res.data.states_daily.length; i+=3) {
-            date.push(res.data.states_daily[i].date);
-            deceasedcases.push(res.data.states_daily[i][stateCode]);
+          if(!stateCode) {
+            this.setState({hideIt: true});
+          }
+          else {
+            this.setState({hideIt: false});
+            stateCode = stateCode.toLowerCase();
+            if(this.props.graphType === "daily") {
+              for(let i = 2; i < res.data.states_daily.length; i+=3) {
+                  deceasedcases.push(res.data.states_daily[i][stateCode]);
+                  date.push(res.data.states_daily[i].date);
+              }
+            }
+            else {
+              let caseSum = 0;
+              for(let i = 2; i < res.data.states_daily.length; i+=3) {
+                caseSum += +res.data.states_daily[i][stateCode];
+                deceasedcases.push(caseSum);
+                date.push(res.data.states_daily[i].date);
+              }
+            }
           }
           this.setState({
             Data: {
@@ -104,6 +121,11 @@ class DeceasedCasesGraph extends React.Component {
   }
 
   render() {
+    if(this.state.hideIt === true) {
+      return (
+        null
+      )
+    }
     return (
       <div className="deceasedcasegraph">
         <Line

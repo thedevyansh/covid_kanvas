@@ -18,15 +18,22 @@ class Homepage extends React.Component {
       labels: [],
       loading: true,
       searchTerm: '',
+      tableSelectedTerm: '',
+      showGraphs: true,
     };
 
     this.handleSearchGraph = this.handleSearchGraph.bind(this);
+    this.handleTableSelectedTerm = this.handleTableSelectedTerm.bind(this);
   }
 
 
+  handleTableSelectedTerm(term) {
+    this.setState({tableSelectedTerm: term});
+  }
+
   handleSearchGraph(term) {
-    // alert("Bro i guess its working");
     this.setState({searchTerm: term});
+    document.getElementById("graphType").style.display = "";
   }
 
   componentDidMount() {
@@ -58,12 +65,13 @@ class Homepage extends React.Component {
           </div>
 
           <div className="Content">
-            <div style={{ marginTop: "10%" }} className="headerdiv">
+            <div style={{ marginTop: "10%"}} className="headerdiv">
               {" "}
               <TimeStamp data={this.state.Total} />
-              <SearchBar handleSearchGraph={this.handleSearchGraph}/> <Graphs searchTerm={this.state.searchTerm}/>
+              <SearchBar handleSearchGraph={this.handleSearchGraph} tableSelectedTerm={this.state.tableSelectedTerm}/>
+              <Graphs searchTerm={this.state.searchTerm}/>
             </div>
-            <Table />
+            <Table onClick = {(term) => {this.handleTableSelectedTerm(term)}}/>
           </div>
         </div>
       ));
