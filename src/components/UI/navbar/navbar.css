@@ -18,14 +18,17 @@ body {
     margin-left: 3%;
     
   }
+  .Faq{
+      margin-left: 37%;
+  }
   .suggestions{
-      margin-left: 3%;
+      margin-left: 0%;
   }
   .about{
-    margin-left: 3%;
+    margin-left: 0%;
   }
   a{
-    margin-left: 3%;
+    margin-left: 0%;
   }
  .fa{
    margin-right: 15px;
