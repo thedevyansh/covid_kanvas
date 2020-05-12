@@ -113,8 +113,8 @@ class Suggestions extends React.Component {
   render() {
     let form = (
       <div className="suggestionForm">
-        <h4>Please Fill Your Details And Suggestions To Fight COVID-19</h4>
-        <h5>By Everyone's Support We Can defeat Corona</h5>
+        <h3>Please fill in your details and suggestions to fight COVID-19</h3>
+        <h5>By everyone's support, we wan defeat corona.</h5>
         <form id="suggestionForm" className="InputFields">
           <p> Your Name : </p>
           <input
@@ -125,7 +125,7 @@ class Suggestions extends React.Component {
           />
           <p>Your E-Mail ID :</p>
           <input
-            type="tex"
+            type="text"
             placeholder="E-Mail"
             className="InputElement"
             onChange={this.mailChangeHandler}

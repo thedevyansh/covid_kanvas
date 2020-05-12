@@ -1,16 +1,13 @@
 
 .suggestionForm{
-    margin: 50px auto;
-    width: 100%;
-    
-    border: 1px solid #eee;
+    margin: 80px auto 30px;
+    width: 90%;   
+    border: 1px solid #000000;
     padding: 10px;
     box-sizing: border-box;
     display:inline-block;
     background-color:#E0E5EC;
-    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
-    
-    
+    /*box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);   */
 }
 .InputElement{
     outline: none;
@@ -21,6 +18,10 @@
     display: block;
     width:100%;
     box-sizing: border-box;
+}
+
+input[type="text"]{
+    border-radius: 20px;
 }
 
 .InputElement:focus{
@@ -52,9 +53,16 @@ p{
     box-sizing: border-box;
 }
 
+.suggestionForm h5 {
+    display: inline;
+    background-color: #22223b;
+    color: #e7a94d;
+    padding: 5px;
+}
+
 @media (min-width:600px){
     .suggestionForm{
-        width: 500px;
+        width: 600px;
     }
 }
 .SubmitButton{
