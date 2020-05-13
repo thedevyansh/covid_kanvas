@@ -11,7 +11,7 @@ class TotalCasesGraph extends React.Component {
       hideIt: false,
     };
   }
-
+ 
   componentDidMount() {
       axios.get("https://api.covid19india.org/data.json").then((res) => {
         let date = [];
@@ -28,9 +28,10 @@ class TotalCasesGraph extends React.Component {
                 data: confirmedcases,
                 fill: true,
                 lineTension: 0.5,
-                backgroundColor: "rgba(255, 102, 102,0.6)",
-                borderColor: "red",
-                borderWidth: 2,
+                /*backgroundColor: "rgba(255, 102, 102,0.6)",*/
+                backgroundColor: "rgba(179, 179, 225,0.6)",
+                borderColor: "rgb(48, 48, 221)",
+                borderWidth: 1,
               },
             ],
           },
@@ -112,9 +113,10 @@ class TotalCasesGraph extends React.Component {
                     data: confirmedcases,
                     fill: true,
                     lineTension: 0.5,
-                    backgroundColor: "rgba(255, 102, 102,0.6)",
-                    borderColor: "red",
-                    borderWidth: 2,
+                    /*backgroundColor: "rgba(255, 102, 102,0.6)",*/
+                    backgroundColor: "rgba(179, 179, 225,0.6)",
+                    borderColor: "rgb(48, 48, 221)",
+                    borderWidth: 1,
                   },
                 ],
               },

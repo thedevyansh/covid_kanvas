@@ -56,7 +56,7 @@ class Homepage extends React.Component {
 
       return (homepage = (
         <div className="App">
-          <h1 className="heading">COVID-19 INDIA TRACKER</h1>
+          <h1 className="heading"><span>COVID-19</span> INDIA TRACKER</h1>
           <div
             className="headbox"
             style={{ textAlign: "center", marginLeft: "-75px" }}

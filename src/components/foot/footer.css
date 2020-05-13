@@ -30,7 +30,7 @@ a:nth-child(1){
 }
 
 .icon:hover, .fa-facebook-square:hover {
-    color: yellow;
+    color: #e7a94d;
 }
 /*.username{
     color:white;
