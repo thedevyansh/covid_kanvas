@@ -23,16 +23,19 @@ tbody{
 td{
 
 padding: 10px;
-text-align: center;
-
-cursor: pointer;
+text-align: right;
 border-radius:4px;
-background-color:#E0E5EC;
+
+/* background-color:rgb(12, 13, 14); */
 
 
 }
-td:hover,
-td:active {
+tr{
+    cursor: pointer;
+}
+tr:hover,
+tr:active,
+tr:visited {
     background-color: #C0DDF5;
 }
 .Deaths{
@@ -54,10 +57,15 @@ td:active {
     font-size: 15px;
     font-weight: bold;
 }
+.new-confirmed{
+    font-size: x-small;
+    color: red
+}
 .States{
     font-weight: bold;
     font-size: 15px;
     width: 30%;
+    text-align: left;
     
 }
 
@@ -75,6 +83,7 @@ td:active {
         margin-left: auto;
         margin-right: auto;
         margin-top: 0px;
+        width:100%;
     }
     th{
         padding: 1px;
@@ -83,21 +92,21 @@ td:active {
     }
     .Deaths{
        
-        font-size: 10px;
+        font-size: 12px;
         
     }
     .Recovered{
         
-        font-size: 10px;
+        font-size: 12px;
         
     }
     .Active{
         
-        font-size: 10px;
+        font-size: 12px;
         
     }
     .Confirmed{
-        font-size: 10px;
+        font-size: 12px;
         
     }
     .States{

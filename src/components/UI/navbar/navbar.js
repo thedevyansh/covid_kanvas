@@ -32,14 +32,25 @@ class NavBar extends React.Component {
             COVID-19 INDIA
           </NavLink>
           <NavLink to="/faq/" exact className="Faq">
-            <i className="fa fa-question-circle" aria-hidden="true"></i> FAQs
+            <i
+              className="fa"
+              class="fa fa-question-circle"
+              aria-hidden="true"
+            ></i>{" "}
+            FAQs
           </NavLink>
           <NavLink to="/suggestion/" exact className="suggestions">
-            <i className="fa fa-lightbulb-o" aria-hidden="true"></i> Suggestions
+            <i className="fa" class="fa fa-lightbulb-o" aria-hidden="true"></i>{" "}
+            Suggestions
           </NavLink>
-          <NavLink to="/about" className="about">
-            <i className="fas fa-virus"></i>About COVID-19
+          <NavLink to="/about" exact className="about">
+            <i className="fa" class="fa fa-hospital-o" aria-hidden="true"></i>
+            About COVID-19
           </NavLink>
+          <a href="https://github.com/gawdsnitkkr/covid_kanvas">
+            <i className="fa" class="fa fa-handshake-o" aria-hidden="true"></i>
+            Contribute
+          </a>
           <button
             className="icon"
             onClick={this.myFunction}
