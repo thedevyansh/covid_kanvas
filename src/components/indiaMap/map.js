@@ -143,7 +143,7 @@ class Map extends React.Component {
 
     return (
       <div className="full-width-height container">
-        <ReactTooltip>{this.state.tooltipContent}</ReactTooltip>
+        <ReactTooltip style={{color: "white"}}>{this.state.tooltipContent}</ReactTooltip>
           <ComposableMap
             projectionConfig={PROJECTION_CONFIG}
             projection="geoMercator"

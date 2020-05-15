@@ -21,10 +21,10 @@ class Faq extends React.Component {
       return (
         <div key={data.qno} className="faq">
           <p className="question">
-            <span>Question{+data.qno + 1}:</span> {data.question}
+            <span>Question {+data.qno}:</span> {data.question}
           </p>
           <p className="answer">
-            <strong>Answer:</strong> {data.answer}
+            {data.answer}
           </p>
         </div>
       );
@@ -33,7 +33,7 @@ class Faq extends React.Component {
     return (
       <div style={{ justifyContent: "center" }}>
         <h3 style={{ textAlign: "center", paddingTop: "5%" }}>
-          Some frequently asked questions
+          SOME FREQUENTLY ASKED QUESTIONS
         </h3>
         {faqs}
       </div>

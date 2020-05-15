@@ -22,7 +22,7 @@ class App extends React.Component {
             <Route path="/" component={HomePage} />
           </Switch>
           <h1 style={{ marginTop: "100px" }} className="footBanner">
-            STAY HOME STAY SAFE
+            STAY HOME, STAY SAFE!
           </h1>
           <div>
             <Footer />

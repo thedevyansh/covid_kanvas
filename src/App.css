@@ -16,7 +16,10 @@ body{
   color: #E12D48;
   
 }
-
+.footBanner {
+  font-family: 'Lato', sans-serif;
+  color: #22223b;
+}
 
 @media(max-width:500px){
   .Content{
