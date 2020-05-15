@@ -21,10 +21,6 @@ body{
   color: #22223b;
 }
 
-.fa-home {
-  color: #e7a94d;
-}
-
 @media(max-width:500px){
   .Content{
     display: block;
