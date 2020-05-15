@@ -1,14 +1,15 @@
 .Head{
     display: flex;
     padding-top: 5% ;
-    padding-left: 5% ;
-    Width:60%;
+    margin: auto;
+    Width:90%;
     text-align: left;
     overflow: relative;
 }
 .section{
+    justify-content: center;
     cursor: pointer;
-    width: 60%;
+    width: 90%;
     margin-left: 4%;
     text-align: center;
     box-sizing: border-box;
@@ -17,30 +18,31 @@
     background-color: rgba(246, 246, 247,0.6);
     border-radius: 5px;
     color: black;
-    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+   /* box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);*/
 }
 .ActiveData{
     background-color:rgba(179, 179, 225,0.4);
     color: rgb(48, 48, 221);
     border-radius: 5px;
-    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+    /*box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);*/
 }
 .RecoveredData{
     background-color:rgba(62, 219, 102,0.4);
     color: rgb(3, 94, 3);
     border-radius: 5px;
-    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+    /*box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);*/
 }
 .DeathsData{
     background-color:rgba(255,128,128,0.6);
     color: #E12D48;
     border-radius: 5px;
-    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);
+    /*box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 16px    rgba(255,255,255, 0.5);*/
 }
 .label{
     /* style={{textAlign:'left',fontSize:'100%',marginLeft:'33%',marginBottom:'8%',marginTop:'3%'}} */
     text-align: center;
     font-size: 100%;
+    
     /* margin-left: 33%;
     margin-bottom: 8%;
     margin-top: 3%; */
@@ -48,6 +50,10 @@
 .numbers{
     /* style={{fontSize:'175%',textAlign:'left',marginLeft:'33%',marginBottom:'8%'}} */
     font-size: 175%;
+
+    /*text-align: left;
+    margin-left: 33%;*/
+    margin-bottom: 8%;
     text-align: center;
     /* margin-left: 33%;
     margin-bottom: 8%; */
@@ -68,7 +74,7 @@
         box-sizing: border-box;
         text-align: center;
         padding: 20px ;
-        margin-left: 30%;
+        margin-left: 33%;
         
     }
     body{
