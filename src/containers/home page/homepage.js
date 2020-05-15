@@ -6,6 +6,7 @@ import TimeStamp from "../../components/timestamp/timestamp";
 import Graphs from "../../containers/graphs/graphs";
 import Table from "../../containers/Table/table";
 import Head from "../../components/head/head";
+import Map from "../../components/indiaMap/map";
 import "./homepage.css";
 
 class Homepage extends React.Component {
@@ -56,12 +57,16 @@ class Homepage extends React.Component {
       return (homepage = (
         <div className="App">
           <h1 className="heading"><span>COVID-19</span> INDIA TRACKER</h1>
+          
+          <Map onClick={(term) => this.handleTableSelectedTerm(term)}></Map>
+
           <div
             className="headbox"
             style={{ textAlign: "center", marginLeft: "-75px" }}
           >
             <Head data={this.state.Total} />
           </div>
+
 
           <div className="Content">
             <div style={{ marginTop: "10%"}} className="headerdiv">

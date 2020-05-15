@@ -7,7 +7,7 @@ const footer = (props) => {
     <div className="footerBar">
       <a href="https://gawds.in">
         {" "}
-        <i class="fa fa-copyright" aria-hidden="true"></i>
+        <i className="fa fa-copyright" aria-hidden="true"></i>
         <abbr className="username">2020 gawds</abbr>
       </a>
 
