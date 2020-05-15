@@ -13,10 +13,26 @@ class Map extends React.Component {
     this.state = {
       tooltipContent: '',
       data: [],
+      width: 0,
+      height: 0,
+      scale: 0,
+    }
+
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  updateWindowDimensions() {
+    if(window.innerWidth <= 500) {
+      this.setState({width: window.innerWidth, height: window.innerHeight, scale: 720});
+    }
+    else {
+      this.setState({width: window.innerWidth, height: window.innerHeight, scale: 1200});
     }
   }
 
   componentDidMount() {
+    this.updateWindowDimensions();;
+    window.addEventListener('resize', this.updateWindowDimensions);
     const data = [
       { id: 'AP', state: 'Andhra Pradesh'  },
       { id: 'AR', state: 'Arunachal Pradesh'  },
@@ -73,8 +89,8 @@ class Map extends React.Component {
     
     const INDIA_TOPO_JSON = require('./india.topo.json');
     const PROJECTION_CONFIG = {
-      scale: 800,
-      center: [78.9629, 22.5937] ,
+      scale: this.state.scale,
+      center: [82, 20],
     };
 
     const COLOR_RANGE = [
@@ -147,12 +163,14 @@ class Map extends React.Component {
           <ComposableMap
             projectionConfig={PROJECTION_CONFIG}
             projection="geoMercator"
-            width={800}
-            height={430}
-            style={{
-              width: "100%",
-              height: "auto",
-            }}
+            // width={800}
+            // height={530}
+            // style={{
+            //   width: "100%",
+            //   height: "auto",
+            // }}
+            width= {this.state.width}
+            height= {this.state.height}
             data-tip=""
           >
             <Geographies geography={INDIA_TOPO_JSON}>
