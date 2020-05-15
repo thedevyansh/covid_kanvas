@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import About from "./containers/about covid 19/about";
 import FAQ from "./containers/FAQ/faq";
 import Footer from "./components/foot/footer";
-import "font-awesome/css/font-awesome.min.css";
 import "./App.css";
 
 class App extends React.Component {
@@ -23,7 +22,7 @@ class App extends React.Component {
             <Route path="/" component={HomePage} />
           </Switch>
           <h1 style={{ marginTop: "100px" }} className="footBanner">
-            STAY H<i class="fa fa-home" aria-hidden="true"></i>ME, STAY SAFE!
+            STAY HOME, STAY SAFE!
           </h1>
           <div>
             <Footer />
